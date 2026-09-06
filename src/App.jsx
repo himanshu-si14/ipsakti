@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
@@ -16,10 +17,14 @@ import KnowledgeMap from './pages/KnowledgeMap';
 import Settings from './pages/Settings';
 import Assistant from './pages/Assistant';
 import ToastContainer from './components/ui/Toast';
+import AppLoader from './components/ui/AppLoader';
 
 export default function App() {
+  const [showLoader, setShowLoader] = useState(true);
+
   return (
     <BrowserRouter>
+      {showLoader && <AppLoader onComplete={() => setShowLoader(false)} />}
       <Routes>
         {/* Landing */}
         <Route path="/" element={<Landing />} />

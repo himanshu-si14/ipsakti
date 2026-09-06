@@ -3,6 +3,7 @@ import { Shield, Tag, Star, Copyright, MapPin, Lock, ChevronRight, AlertTriangle
 import Layout from '../components/layout/Layout';
 import StatusBadge from '../components/ui/StatusBadge';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import IPIntelligence3D from '../components/3d/IPIntelligence3D';
 import { DEMO_PRODUCT } from '../data/demo';
 
 const IP_TYPES = [
@@ -67,6 +68,11 @@ export default function IPIntelligence() {
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D IP Topology Explorer */}
+        <div className="mt-6">
+          <IPIntelligence3D activeType={activeType} onSelectType={setActiveType} />
+        </div>
 
         {/* IP Type Cards */}
         <div className="grid grid-3 gap-4 mt-6">

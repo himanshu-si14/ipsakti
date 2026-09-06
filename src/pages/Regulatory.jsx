@@ -2,6 +2,7 @@ import { BookOpen, AlertTriangle, CheckCircle, Clock, XCircle } from 'lucide-rea
 import Layout from '../components/layout/Layout';
 import StatusBadge from '../components/ui/StatusBadge';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import BotanicalParticles from '../components/3d/BotanicalParticles';
 import { DEMO_PRODUCT } from '../data/demo';
 
 const STATUS_ICONS = {
@@ -44,8 +45,9 @@ export default function Regulatory() {
         <DisclaimerBanner />
 
         {/* Applicable Framework */}
-        <div className="card mt-6" style={{ background: 'var(--color-primary)', borderRadius: 'var(--radius-xl)', color: 'white' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 'var(--space-6)', flexWrap: 'wrap' }}>
+        <div className="card mt-6" style={{ background: 'var(--color-primary)', borderRadius: 'var(--radius-xl)', color: 'white', position: 'relative', overflow: 'hidden' }}>
+          <BotanicalParticles count={20} />
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 'var(--space-6)', flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>
             <div>
               <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: 6 }}>
                 Applicable Framework

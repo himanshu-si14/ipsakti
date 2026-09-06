@@ -1926,3 +1926,78 @@ p {
     font-size: var(--text-4xl);
   }
 }
+
+/* ============================================================
+   3D IMMERSIVE ENHANCEMENTS & ANIMATIONS
+   ============================================================ */
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.canvas3d-container {
+  will-change: transform;
+}
+
+.canvas3d-fallback {
+  border: 1px dashed var(--color-border);
+}
+
+/* Glassmorphic elements */
+.glass-panel {
+  background: rgba(253, 250, 243, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 203, 191, 0.5);
+  box-shadow: 0 10px 30px rgba(27, 67, 50, 0.06);
+}
+
+/* Smooth active micro-interactions */
+.btn, .sidebar-link, .ip-card, .action-card, .reg-alert {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(27, 67, 50, 0.08);
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .botanical-particles-layer {
+    display: none !important;
+  }
+}
+

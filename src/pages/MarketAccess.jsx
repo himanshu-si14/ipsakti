@@ -3,6 +3,7 @@ import { Globe, AlertTriangle, Info } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import StatusBadge from '../components/ui/StatusBadge';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import MarketGlobe3D from '../components/3d/MarketGlobe3D';
 import { DEMO_PRODUCT } from '../data/demo';
 
 const MARKETS = ['India', 'European Union', 'United States'];
@@ -88,6 +89,11 @@ export default function MarketAccess() {
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D Stylized Market Globe */}
+        <div className="mt-6">
+          <MarketGlobe3D selectedMarket={targetMarket} onSelectMarket={setTargetMarket} />
+        </div>
 
         {/* Jurisdiction selectors */}
         <div className="grid grid-2 gap-6 mt-6">

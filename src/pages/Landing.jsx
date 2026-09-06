@@ -3,15 +3,10 @@ import {
   ArrowRight, Shield, Leaf, BookOpen, Globe, FlaskConical,
   CheckCircle, Sparkles, FileText, Zap
 } from 'lucide-react';
-
-const JOURNEY_STEPS = [
-  { id: 'discover', label: 'Discover', desc: 'Identify your innovation', color: '#1B4332', bg: '#f0f7f4', icon: Sparkles },
-  { id: 'classify', label: 'Classify', desc: 'Determine product category', color: '#2d6a4f', bg: '#e8f5ee', icon: Zap },
-  { id: 'protect', label: 'Protect', desc: 'IP pathways & TK review', color: '#40916c', bg: '#d8f3e3', icon: Shield },
-  { id: 'comply', label: 'Comply', desc: 'Regulatory requirements', color: '#52796F', bg: '#e2ede9', icon: BookOpen },
-  { id: 'commercialize', label: 'Commercialize', desc: 'Market access strategy', color: '#C8961E', bg: '#fef3e2', icon: Globe },
-  { id: 'monitor', label: 'Monitor', desc: 'Regulatory change radar', color: '#92400e', bg: '#fef3c7', icon: FlaskConical },
-];
+import KnowledgeCore3D from '../components/3d/KnowledgeCore3D';
+import BotanicalParticles from '../components/3d/BotanicalParticles';
+import ScrollStorySection from '../components/3d/ScrollStorySection';
+import SahayakOrbButton from '../components/layout/SahayakOrbButton';
 
 const FEATURES = [
   {
@@ -48,22 +43,27 @@ const FEATURES = [
 
 export default function Landing() {
   return (
-    <div className="landing-page">
+    <div className="landing-page" style={{ position: 'relative', overflowX: 'hidden' }}>
+      {/* Subtle Floating Botanical Particles */}
+      <BotanicalParticles count={45} opacity={0.4} />
+
       {/* Nav */}
-      <nav className="landing-nav">
+      <nav className="landing-nav" style={{ position: 'relative', zIndex: 10 }}>
         <div className="landing-nav-brand">
           IP-SAKTI <span>Sahayak</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-5)' }}>
-          <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)' }}>Ministry of Ayush · All India Institute of Ayurveda</span>
+          <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)' }}>
+            Ministry of Ayush · All India Institute of Ayurveda
+          </span>
           <Link to="/dashboard" className="btn btn-primary btn-sm">
             Go to Dashboard
           </Link>
         </div>
       </nav>
 
-      {/* Hero */}
-      <div className="landing-hero">
+      {/* Hero Section with 3D Knowledge Core */}
+      <div className="landing-hero" style={{ position: 'relative', zIndex: 10, alignItems: 'center', gap: 'var(--space-8)' }}>
         <div>
           <div className="hero-eyebrow">
             <span className="hero-eyebrow-line" />
@@ -77,7 +77,7 @@ export default function Landing() {
           </h1>
 
           <p className="hero-subtitle">
-            Navigate intellectual property, traditional knowledge, biodiversity, regulatory requirements and market access through evidence-backed intelligence.
+            An evidence-first intelligence platform for Ayurvedic intellectual property, traditional knowledge, biodiversity, regulatory and market-access guidance.
           </p>
 
           <div className="hero-ctas">
@@ -100,38 +100,32 @@ export default function Landing() {
             ))}
           </div>
 
-          <div style={{ marginTop: 'var(--space-6)', padding: 'var(--space-3) var(--space-4)', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 'var(--radius-md)', fontSize: 'var(--text-xs)', color: '#78350f' }}>
-            Information only — not legal advice. Consult qualified IP, regulatory, and legal professionals.
+          <div
+            style={{
+              marginTop: 'var(--space-6)',
+              padding: 'var(--space-3) var(--space-4)',
+              background: '#fffbeb',
+              border: '1px solid #fde68a',
+              borderRadius: 'var(--radius-md)',
+              fontSize: 'var(--text-xs)',
+              color: '#78350f',
+            }}
+          >
+            IP-SAKTI Sahayak provides information and decision-support based on available sources. It does not provide legal advice or guarantee regulatory approval, patentability, registration, or market access.
           </div>
         </div>
 
-        <div className="hero-visual">
-          <div className="journey-visual">
-            {JOURNEY_STEPS.map((step, idx) => (
-              <div key={step.id}>
-                <div className="journey-visual-step">
-                  <div className="journey-step-badge" style={{ background: step.bg, color: step.color }}>
-                    <step.icon size={18} />
-                  </div>
-                  <div className="journey-step-info">
-                    <div className="journey-step-name">{step.label}</div>
-                    <div className="journey-step-desc">{step.desc}</div>
-                  </div>
-                  {idx < JOURNEY_STEPS.length - 1 && (
-                    <CheckCircle size={14} style={{ color: 'var(--color-border)', flexShrink: 0 }} />
-                  )}
-                </div>
-                {idx < JOURNEY_STEPS.length - 1 && (
-                  <div className="journey-visual-connector" />
-                )}
-              </div>
-            ))}
-          </div>
+        {/* Major 3D Knowledge Core */}
+        <div style={{ position: 'relative', width: '100%', height: '480px' }}>
+          <KnowledgeCore3D />
         </div>
       </div>
 
-      {/* Features */}
-      <div style={{ background: 'var(--color-surface)', padding: '0 var(--space-12) var(--space-16)' }}>
+      {/* 3D Scroll Storytelling: The Ayurvedic Innovation Journey */}
+      <ScrollStorySection />
+
+      {/* Features Grid */}
+      <div style={{ background: 'var(--color-surface)', padding: '0 var(--space-12) var(--space-16)', position: 'relative', zIndex: 10 }}>
         <div className="landing-section" style={{ padding: 'var(--space-16) 0' }}>
           <div className="landing-section-label">Platform Capabilities</div>
           <h2 className="landing-section-title">Everything your Ayurvedic innovation needs</h2>
@@ -141,12 +135,28 @@ export default function Landing() {
 
           <div className="grid grid-3 gap-5">
             {FEATURES.map((f) => (
-              <div key={f.title} className="card">
-                <div style={{ width: 44, height: 44, borderRadius: 'var(--radius-md)', background: '#f0f7f4', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-4)', color: 'var(--color-primary)' }}>
+              <div key={f.title} className="card" style={{ transition: 'transform 0.25s ease, box-shadow 0.25s ease' }}>
+                <div
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 'var(--radius-md)',
+                    background: '#f0f7f4',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: 'var(--space-4)',
+                    color: 'var(--color-primary)',
+                  }}
+                >
                   <f.icon size={22} />
                 </div>
-                <h5 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>{f.title}</h5>
-                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6 }}>{f.desc}</p>
+                <h5 style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, marginBottom: 'var(--space-2)', color: 'var(--color-text)' }}>
+                  {f.title}
+                </h5>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)', lineHeight: 1.6 }}>
+                  {f.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -154,7 +164,7 @@ export default function Landing() {
       </div>
 
       {/* CTA Section */}
-      <div style={{ background: 'var(--color-primary)', padding: 'var(--space-16) var(--space-12)', textAlign: 'center' }}>
+      <div style={{ background: 'var(--color-primary)', padding: 'var(--space-16) var(--space-12)', textAlign: 'center', position: 'relative', zIndex: 10 }}>
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: 'var(--space-4)' }}>
             Start Now
@@ -177,15 +187,18 @@ export default function Landing() {
       </div>
 
       {/* Footer */}
-      <div className="landing-footer">
+      <div className="landing-footer" style={{ position: 'relative', zIndex: 10 }}>
         <div style={{ marginBottom: 8 }}>
           <strong>IP-SAKTI Sahayak</strong> · Evidence-backed intelligence for Ayurvedic innovation.
         </div>
         <div>Ministry of Ayush · All India Institute of Ayurveda</div>
         <div style={{ marginTop: 8, fontSize: '10px' }}>
-          This platform provides information and decision-support only. It does not provide legal advice or guarantee regulatory approval, patentability, registration, or market access.
+          IP-SAKTI Sahayak provides information and decision-support based on available sources. It does not provide legal advice or guarantee regulatory approval, patentability, registration, or market access.
         </div>
       </div>
+
+      {/* Global Floating Sahayak Assistant */}
+      <SahayakOrbButton />
     </div>
   );
 }

@@ -4,11 +4,13 @@ import { ChevronRight, Download, Share2 } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import StatusBadge from '../components/ui/StatusBadge';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import Passport3D from '../components/3d/Passport3D';
+import IngredientVisualizer3D from '../components/3d/IngredientVisualizer3D';
 import { DEMO_PRODUCT } from '../data/demo';
 
-function PassportSection({ title, children }) {
+function PassportSection({ id, title, children }) {
   return (
-    <div className="passport-section">
+    <div className="passport-section" id={`section-${id}`} data-section={id}>
       <div className="passport-section-title">{title}</div>
       {children}
     </div>
@@ -49,6 +51,11 @@ export default function PassportView() {
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D Physical/Digital Passport Object */}
+        <div className="mt-6">
+          <Passport3D product={p} />
+        </div>
 
         <div className="passport-container mt-6">
           {/* Passport Header */}
@@ -101,7 +108,7 @@ export default function PassportView() {
             </div>
 
             {/* Sections */}
-            <PassportSection title="Product Identity">
+            <PassportSection id="identity" title="Product Identity">
               <FieldRow label="Product Name" value={p.name} />
               <FieldRow label="Description" value={p.description} />
               <FieldRow label="Organization" value={p.organization} />
@@ -109,9 +116,14 @@ export default function PassportView() {
               <FieldRow label="Traditional Basis" value={p.traditionalBasis} />
               <FieldRow label="Innovation Types" value={p.innovationType.join(', ')} />
               <FieldRow label="Target Markets" value={p.targetMarkets.join(', ')} />
+
+              {/* 3D Botanical Ingredient Visualizer */}
+              <div className="mt-4">
+                <IngredientVisualizer3D />
+              </div>
             </PassportSection>
 
-            <PassportSection title="Classification">
+            <PassportSection id="classification" title="Classification">
               <div style={{ background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-5)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
                   <div>
@@ -136,7 +148,7 @@ export default function PassportView() {
               </div>
             </PassportSection>
 
-            <PassportSection title="IP Landscape">
+            <PassportSection id="ip" title="IP Landscape">
               <div className="grid grid-3 gap-4">
                 {[
                   { type: 'Patent', status: p.ip.patent.status, note: p.ip.patent.novelty },
@@ -155,7 +167,7 @@ export default function PassportView() {
               </Link>
             </PassportSection>
 
-            <PassportSection title="Traditional Knowledge">
+            <PassportSection id="tk" title="Traditional Knowledge">
               <div className="warning-box">
                 <div style={{ fontWeight: 700, fontSize: 'var(--text-sm)', color: 'var(--color-warning)', marginBottom: 6 }}>
                   Potential traditional knowledge overlap detected.
@@ -169,7 +181,7 @@ export default function PassportView() {
               </Link>
             </PassportSection>
 
-            <PassportSection title="Biodiversity / ABS">
+            <PassportSection id="abs" title="Biodiversity / ABS">
               <FieldRow label="Overall Status" badge={p.abs.status} />
               <FieldRow label="Biological Resources" value={`${p.abs.resources.length} resources require ABS assessment`} />
               <FieldRow label="Primary Authority" value="National Biodiversity Authority (NBA)" />
@@ -178,7 +190,7 @@ export default function PassportView() {
               </Link>
             </PassportSection>
 
-            <PassportSection title="Regulatory Pathway">
+            <PassportSection id="regulatory" title="Regulatory Pathway">
               <FieldRow label="Primary Pathway" value={p.regulatory.primaryPathway} />
               <FieldRow label="Authority" value={p.regulatory.authority} />
               <FieldRow label="Status" badge={p.regulatory.status} />
@@ -187,7 +199,7 @@ export default function PassportView() {
               </Link>
             </PassportSection>
 
-            <PassportSection title="Evidence">
+            <PassportSection id="evidence" title="Evidence">
               <FieldRow label="Sources Checked" value={`${p.evidence.length} authoritative sources`} />
               <FieldRow label="Evidence Strength" value="High (5 sources) · Medium (2 sources)" />
               <Link to="/evidence" className="btn btn-outline btn-sm mt-4">
@@ -195,7 +207,7 @@ export default function PassportView() {
               </Link>
             </PassportSection>
 
-            <PassportSection title="Action Plan">
+            <PassportSection id="action" title="Action Plan">
               <div className="grid grid-3 gap-4">
                 {[
                   { period: '30 Days', items: p.actionPlan.thirtyDays.slice(0, 2) },
@@ -218,7 +230,7 @@ export default function PassportView() {
               </Link>
             </PassportSection>
 
-            <PassportSection title="Expert Review">
+            <PassportSection id="expert" title="Expert Review">
               <div className="info-box">
                 <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-muted)' }}>
                   Expert review is recommended for: patent pathway assessment (Section 3(p) analysis), ABS compliance across multiple State Biodiversity Boards, and EU Novel Food classification.

@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Layout from '../components/layout/Layout';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import KnowledgeMap3D from '../components/3d/KnowledgeMap3D';
+import { Box, Map } from 'lucide-react';
 
 // Node positions (relative to 800x500 SVG)
 const NODES = [
@@ -40,18 +42,72 @@ function getNode(id) {
 }
 
 export default function KnowledgeMap() {
+  const [viewMode, setViewMode] = useState('3d');
+
   return (
     <Layout title="Knowledge Map" breadcrumb="Tools">
       <div className="page-container">
-        <div className="page-header">
-          <div className="section-label">Knowledge Map</div>
-          <h1 className="page-title">Knowledge Map</h1>
-          <p className="page-subtitle">
-            A visual representation of the relationships between Herbal-X, its ingredients, traditional knowledge, biodiversity, IP, and regulatory pathways.
-          </p>
+        <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
+          <div>
+            <div className="section-label">Knowledge Map</div>
+            <h1 className="page-title">Knowledge Map</h1>
+            <p className="page-subtitle">
+              A visual representation of the relationships between Herbal-X, its ingredients, traditional knowledge, biodiversity, IP, and regulatory pathways.
+            </p>
+          </div>
+
+          {/* View Mode Toggle */}
+          <div style={{ display: 'flex', gap: '4px', background: 'var(--color-surface)', padding: '4px', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+            <button
+              onClick={() => setViewMode('3d')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 14px',
+                borderRadius: 'var(--radius-md)',
+                background: viewMode === '3d' ? 'var(--color-primary)' : 'transparent',
+                color: viewMode === '3d' ? 'white' : 'var(--color-text)',
+                border: 'none',
+                fontSize: '12px',
+                fontWeight: 700,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              <Box size={14} /> 3D Interactive
+            </button>
+            <button
+              onClick={() => setViewMode('2d')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 14px',
+                borderRadius: 'var(--radius-md)',
+                background: viewMode === '2d' ? 'var(--color-primary)' : 'transparent',
+                color: viewMode === '2d' ? 'white' : 'var(--color-text)',
+                border: 'none',
+                fontSize: '12px',
+                fontWeight: 700,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              <Map size={14} /> 2D Schematic
+            </button>
+          </div>
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D View */}
+        {viewMode === '3d' ? (
+          <div className="mt-6">
+            <KnowledgeMap3D />
+          </div>
+        ) : (
+          <div>
 
         {/* Legend */}
         <div className="card mt-6" style={{ padding: 'var(--space-4) var(--space-6)' }}>
@@ -129,6 +185,8 @@ export default function KnowledgeMap() {
             ))}
           </svg>
         </div>
+      </div>
+    )}
 
         {/* Architecture panel */}
         <div className="mt-8">

@@ -2,6 +2,7 @@ import { Radio, ChevronRight, CheckCircle, AlertTriangle, Clock, Info } from 'lu
 import Layout from '../components/layout/Layout';
 import StatusBadge from '../components/ui/StatusBadge';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import RadarTimeline3D from '../components/3d/RadarTimeline3D';
 import { DEMO_PRODUCT } from '../data/demo';
 
 const SEVERITY_CONFIG = {
@@ -25,6 +26,11 @@ export default function RadarPage() {
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D Regulatory Change Timeline */}
+        <div className="mt-6">
+          <RadarTimeline3D alerts={alerts} />
+        </div>
 
         {/* Summary */}
         <div className="grid grid-4 gap-4 mt-6">

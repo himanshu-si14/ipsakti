@@ -4,6 +4,7 @@ import { AlertTriangle, ChevronRight, Info } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import StatusBadge from '../components/ui/StatusBadge';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import ClassificationPathway3D from '../components/3d/ClassificationPathway3D';
 import { DEMO_PRODUCT } from '../data/demo';
 
 const CATEGORIES = [
@@ -67,6 +68,11 @@ export default function Classification() {
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D Classification Pathway Animation */}
+        <div className="mt-6">
+          <ClassificationPathway3D selectedCategory={selected} onSelectCategory={setSelected} />
+        </div>
 
         {/* Preliminary result */}
         <div className="card mt-6" style={{ borderLeft: '4px solid var(--color-primary)', borderRadius: 'var(--radius-xl)' }}>

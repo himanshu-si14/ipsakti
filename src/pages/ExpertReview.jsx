@@ -2,6 +2,7 @@ import { AlertTriangle, Users, Send } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import StatusBadge from '../components/ui/StatusBadge';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import ExpertCaseFile3D from '../components/3d/ExpertCaseFile3D';
 import { showToast } from '../components/ui/Toast';
 import { DEMO_PRODUCT } from '../data/demo';
 
@@ -24,6 +25,11 @@ export default function ExpertReview() {
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D Case File Object */}
+        <div className="mt-6">
+          <ExpertCaseFile3D caseData={expertCase} onRequestReview={handleRequest} />
+        </div>
 
         {/* Trigger reasons */}
         <div className="warning-box mt-6">

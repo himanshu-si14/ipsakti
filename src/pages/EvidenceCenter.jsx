@@ -3,6 +3,8 @@ import { FlaskConical, Filter } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import EvidenceCard from '../components/ui/EvidenceCard';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import EvidenceWall3D from '../components/3d/EvidenceWall3D';
+import RAGVisualizer3D from '../components/3d/RAGVisualizer3D';
 import { DEMO_PRODUCT } from '../data/demo';
 
 const STRENGTH_LEVELS = ['All', 'High', 'Medium', 'Low'];
@@ -32,6 +34,16 @@ export default function EvidenceCenter() {
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D Evidence Wall */}
+        <div className="mt-6">
+          <EvidenceWall3D evidenceList={evidence} />
+        </div>
+
+        {/* 3D RAG Architecture: How Sahayak Builds an Answer */}
+        <div className="mt-6">
+          <RAGVisualizer3D />
+        </div>
 
         {/* Confidence explanation */}
         <div className="card mt-6">

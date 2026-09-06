@@ -4,6 +4,7 @@ import { Plus, Trash2, ChevronRight, ChevronLeft, Check, Sparkles } from 'lucide
 import Layout from '../components/layout/Layout';
 import StepIndicator from '../components/ui/StepIndicator';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import IngredientVisualizer3D from '../components/3d/IngredientVisualizer3D';
 import { showToast } from '../components/ui/Toast';
 
 const STEPS = ['Product Basics', 'Ingredients', 'Traditional Basis', 'Innovation', 'Target Market', 'Review'];
@@ -183,9 +184,16 @@ export default function CreatePassport() {
                 )}
               </div>
             ))}
-            <button className="btn btn-outline btn-sm mt-4" onClick={addIngredient}>
-              <Plus size={14} /> Add Ingredient
-            </button>
+            <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
+              <button className="btn btn-outline btn-sm" onClick={addIngredient}>
+                <Plus size={14} /> Add Ingredient
+              </button>
+            </div>
+
+            {/* 3D Botanical Visualizer as Reference */}
+            <div className="mt-6">
+              <IngredientVisualizer3D />
+            </div>
           </div>
         );
 

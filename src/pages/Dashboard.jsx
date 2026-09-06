@@ -7,6 +7,7 @@ import Layout from '../components/layout/Layout';
 import MetricCard from '../components/ui/MetricCard';
 import InnovationCard from '../components/ui/InnovationCard';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import BotanicalParticles from '../components/3d/BotanicalParticles';
 import { USER, METRICS, ALL_INNOVATIONS, DEMO_PRODUCT } from '../data/demo';
 
 export default function Dashboard() {
@@ -75,6 +76,7 @@ export default function Dashboard() {
         }}>
           <div style={{ position: 'absolute', top: -40, right: -40, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,255,255,0.04)' }} />
           <div style={{ position: 'absolute', bottom: -30, left: 200, width: 120, height: 120, borderRadius: '50%', background: 'rgba(200,150,30,0.12)' }} />
+          <BotanicalParticles count={25} />
           <div style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: 'var(--space-2)' }}>
               Core Feature

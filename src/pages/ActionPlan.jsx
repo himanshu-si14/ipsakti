@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { CheckCircle, Circle } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import ActionTimeline3D from '../components/3d/ActionTimeline3D';
 import { DEMO_PRODUCT } from '../data/demo';
 
 const PRIORITY_COLOR = {
@@ -44,6 +46,7 @@ function ActionGroup({ period, color, items }) {
 
 export default function ActionPlan() {
   const plan = DEMO_PRODUCT.actionPlan;
+  const [selectedPeriod, setSelectedPeriod] = useState('30');
 
   return (
     <Layout title="Action Plan" breadcrumb="Planning">
@@ -57,6 +60,11 @@ export default function ActionPlan() {
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D Milestone Progression Timeline */}
+        <div className="mt-6">
+          <ActionTimeline3D activePeriod={selectedPeriod} onSelectPeriod={setSelectedPeriod} />
+        </div>
 
         {/* Summary */}
         <div className="grid grid-4 gap-4 mt-6">

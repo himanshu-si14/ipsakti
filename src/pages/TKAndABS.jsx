@@ -3,6 +3,7 @@ import { AlertTriangle, Leaf, ChevronRight } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import StatusBadge from '../components/ui/StatusBadge';
 import DisclaimerBanner from '../components/ui/DisclaimerBanner';
+import TKBotanicalScene3D from '../components/3d/TKBotanicalScene3D';
 import { showToast } from '../components/ui/Toast';
 import { DEMO_PRODUCT } from '../data/demo';
 
@@ -26,6 +27,11 @@ export default function TKAndABS() {
         </div>
 
         <DisclaimerBanner />
+
+        {/* 3D Botanical Ecosystem Scene */}
+        <div className="mt-6">
+          <TKBotanicalScene3D />
+        </div>
 
         {/* Tab Bar */}
         <div className="tab-bar mt-6">
